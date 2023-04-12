@@ -6,22 +6,22 @@
 
 RevolvingText can be installed via NPM or Yarn:
 
-`npm install @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient --save`
+`npm install react-native-revolving-text @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient --save`
 
-`yarn add @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient`
+`yarn add react-native-revolving-text @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient`
 
 # **Usage**
 
 ```ts
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { RevolvingText } from "path/to/component";
+import { RevolvingText } from "react-native-revolving-text";
 
 const App = () => {
   return (
     <View style={styles.container}>
       <RevolvingText fontStyle={styles.text} speed={80}>
-        This text will continuously scroll to the left in a loop
+        This text will continuously scroll to the left in a loop if the text is larger than its parent view
       </RevolvingText>
     </View>
   );
