@@ -44,11 +44,10 @@ const styles = StyleSheet.create({
 
 # **Props**
 
-- children (required) - The text that will be scrolled.
-- delayMs (optional) - The number of milliseconds to delay before the animation starts. Defaults to 4000.
-- marginLeft (optional) - The amount of margin to add to the left of the text. Defaults to 0.
-- speed (optional) - The speed of the animation in pixels per second. Defaults to 50.
-- textColor (optional) - The color of the text. Defaults to black.
-- fontStyle (optional) - An object containing any additional styles to be applied to the text component.
+- `delayMs` (optional) - The number of milliseconds to delay before the animation starts. Defaults to 4000.
+- `marginLeft` (optional) - The amount of margin to add to the left of the text. Defaults to 0.
+- `speed` (optional) - The speed of the animation in pixels per second. Defaults to 50.
+- `textColor` (optional) - The color of the text. Defaults to black.
+- `fontStyle` (optional) - An object containing any additional styles to be applied to the text component.
 
 ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmI3YmJlOTFhZTcyOTA5YWI5OTkwMWMxNTk4MGE1MjQ4NTdiNDdjMSZjdD1n/1ymHr0E5x93qYU17lR/giphy.gif)
