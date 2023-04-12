@@ -163,9 +163,10 @@ export const RevolvingText: FC<IProps> = ({
 
   const onTextLayout = (e: NativeSyntheticEvent<TextLayoutEventData>): void => {
     if (e.nativeEvent.lines.length) {
-      const lineWidth = e.nativeEvent.lines[0].width;
+      const lineWidth = e.nativeEvent.lines[0]?.width ?? 0;
+      const lineheight = e.nativeEvent.lines[0]?.height ?? 0;
       setTextWidth(lineWidth);
-      setTextHeight(e.nativeEvent.lines[0].height);
+      setTextHeight(lineheight);
     }
   };
 

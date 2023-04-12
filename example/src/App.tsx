@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { RevolvingText } from 'react-native-revolving-text';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default function App() {
