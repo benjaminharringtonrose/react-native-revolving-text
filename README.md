@@ -6,9 +6,9 @@
 
 RevolvingText can be installed via NPM or Yarn:
 
-`npm install @react-native-masked-view/masked-view polished react-native-reanimated react-native-linear-gradient --save`
+`npm install @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient --save`
 
-`yarn add @react-native-masked-view/masked-view polished react-native-reanimated react-native-linear-gradient`
+`yarn add @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient`
 
 # **Usage**
 
