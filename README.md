@@ -20,7 +20,7 @@ import { RevolvingText } from "react-native-revolving-text";
 const App = () => {
   return (
     <View style={styles.container}>
-      <RevolvingText fontStyle={styles.text} speed={80}>
+      <RevolvingText fontStyle={styles.text} speed={80} delayMs={4000} marginLeft={10} textColor={"white}>
         This text will continuously scroll to the left in a loop if the text is larger than its parent view
       </RevolvingText>
     </View>
@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F5FCFF",
+    backgroundColor: "black",
+    marginHorizontal: 40,
   },
   text: {
     fontFamily: "Helvetica",
