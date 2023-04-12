@@ -20,26 +20,44 @@ import { RevolvingText } from "react-native-revolving-text";
 const App = () => {
   return (
     <View style={styles.container}>
-      <RevolvingText fontStyle={styles.text} speed={80} delayMs={4000} marginLeft={10} textColor={"white}>
-        This text will continuously scroll to the left in a loop if the text is larger than its parent view
-      </RevolvingText>
+      <View style={styles.parentView}>
+        <RevolvingText
+          fontStyle={styles.text}
+          speed={80}
+          delayMs={4000}
+          marginLeft={10}
+          textColor={"white"}
+        >
+          {
+            "This text will continuously scroll to the left in a loop if the text is larger than its parent view"
+          }
+        </RevolvingText>
+      </View>
     </View>
   );
 };
 
+export default App;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    backgroundColor: "#fff",
     alignItems: "center",
+    justifyContent: "center",
+  },
+  parentView: {
     backgroundColor: "black",
-    marginHorizontal: 40,
+    width: 300,
+    padding: 5,
+    borderRadius: 4,
   },
   text: {
     fontFamily: "Helvetica",
     fontSize: 18,
     fontWeight: "600",
   },
+});
 });
 ```
 
