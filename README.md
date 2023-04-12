@@ -12,7 +12,7 @@ RevolvingText can be installed via NPM or Yarn:
 
 # **Usage**
 
-```
+```ts
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { RevolvingText } from "path/to/component";
