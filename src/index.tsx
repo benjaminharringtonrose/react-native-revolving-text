@@ -91,11 +91,12 @@ export const RevolvingText: FC<IProps> = ({
     const viewWidthRatio = viewWidth ? viewWidth / windowWidth : 1;
     const distance1 = textWidth;
     const distance2 = viewWidth + textWidth;
+    const velocity = 2500 / speed;
     xOffset.value = withDelay(
       delay,
       withSequence(
         withTiming(-textWidth - marginLeft, {
-          duration: distance1 * speed * viewWidthRatio,
+          duration: distance1 * velocity * viewWidthRatio,
           easing: Easing.linear,
         }),
         withRepeat(
@@ -105,7 +106,7 @@ export const RevolvingText: FC<IProps> = ({
               easing: Easing.linear,
             }),
             withTiming(-textWidth - marginLeft, {
-              duration: distance2 * speed * viewWidthRatio,
+              duration: distance2 * velocity * viewWidthRatio,
               easing: Easing.linear,
             })
           ),
