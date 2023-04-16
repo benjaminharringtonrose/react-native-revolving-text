@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 
 - `delayMs` (optional) - The number of milliseconds to delay before the animation starts. Defaults to 4000.
 - `marginLeft` (optional) - The amount of margin to add to the left of the text. Defaults to 0.
-- `speed` (optional) - The speed of the animation in pixels per second. Defaults to 50.
+- `speed` (optional) - The speed of the animation. Arbitrary value. Defaults to 50.
 - `textColor` (optional) - The color of the text. Defaults to black.
 - `fontStyle` (optional) - An object containing any additional styles to be applied to the text component.
 
