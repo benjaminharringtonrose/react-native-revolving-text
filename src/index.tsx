@@ -44,7 +44,7 @@ interface IProps {
   >;
 }
 
-const RevolvingText: FC<IProps> = ({
+export const RevolvingText: FC<IProps> = ({
   children,
   delayMs,
   speed = 50,
@@ -215,9 +215,7 @@ const RevolvingText: FC<IProps> = ({
             <Reanimated.View
               style={[animStyle, { marginLeft, width: textWidth }]}
             >
-              <Reanimated.Text style={[textStyle, { width: textWidth }]}>
-                {children}
-              </Reanimated.Text>
+              <Text style={[textStyle, { width: textWidth }]}>{children}</Text>
             </Reanimated.View>
           }
         >
@@ -243,5 +241,3 @@ const RevolvingText: FC<IProps> = ({
     </View>
   );
 };
-
-export default RevolvingText;

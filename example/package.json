@@ -5,10 +5,11 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "pods": "cd ios && pod install --repo-update && cd .."
   },
   "dependencies": {
-    "@react-native-masked-view/masked-view": "0.2.8",
+    "@react-native-masked-view/masked-view": "^0.2.9",
     "expo": "~48.0.11",
     "expo-dev-client": "^2.1.6",
     "expo-splash-screen": "~0.18.1",
