@@ -1,16 +1,13 @@
 import React, { useState, useCallback, useEffect, FC } from 'react';
 import {
-  NativeSyntheticEvent,
+  LayoutChangeEvent,
   StyleProp,
-  StyleSheet,
   Text,
-  TextLayoutEventData,
   TextStyle,
   View,
-  LayoutChangeEvent,
+  AccessibilityInfo,
 } from 'react-native';
 
-import { usePrevious } from './hooks/usePrevious';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { transparentize } from 'polished';
 import Reanimated, {
@@ -25,32 +22,36 @@ import Reanimated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import LinearGradient from 'react-native-linear-gradient';
-import { windowWidth } from './constants/Sizes';
+import rnTextSize from 'react-native-text-size';
 import { Colors } from './constants/Colors';
+import { windowWidth } from './constants/Sizes';
+import LinearGradient from 'react-native-linear-gradient';
 
 const START_POINT = { x: 0, y: 0 };
 const END_POINT = { x: 1, y: 0 };
 const DELAY = 4000;
+const COLORS_LENGTH = 16;
 
 interface IProps {
   children: string;
   delayMs?: number;
   marginLeft?: number;
+  mode?: 'revolve' | 'peek';
   speed?: number;
   textColor?: string;
-  fontStyle?: StyleProp<
+  textStyle?: StyleProp<
     Pick<TextStyle, 'fontFamily' | 'fontSize' | 'fontWeight'>
   >;
 }
 
-export const RevolvingText: FC<IProps> = ({
+const RevolvingText: FC<IProps> = ({
   children,
   delayMs,
   speed = 50,
-  fontStyle,
+  textStyle,
   textColor,
   marginLeft = 0,
+  mode,
 }) => {
   const xOffset = useSharedValue(0);
 
@@ -58,63 +59,103 @@ export const RevolvingText: FC<IProps> = ({
   const [textWidth, setTextWidth] = useState<number>(0);
   const [textHeight, setTextHeight] = useState<number>(0);
   const [shouldReset, setShouldReset] = useState(false);
-
-  const prevTextWidth = usePrevious(textWidth);
+  const [isReduceMotionEnabled, setIsReduceMotionEnabled] = useState(false);
 
   const widthsDefined = textWidth && viewWidth;
   const textOverflowing = textWidth > viewWidth;
-  const textWidthChanged = prevTextWidth !== textWidth;
 
   const color = textColor ?? Colors.white;
 
-  const colors = [
-    transparentize(1, color),
-    color,
-    color,
-    color,
-    color,
-    color,
-    color,
-    color,
-    color,
-    color,
-    color,
-    color,
-    color,
-    color,
-    color,
-    transparentize(1, color),
-  ];
+  const colors = Array.from({ length: COLORS_LENGTH }, (_, idx) => {
+    if (idx === 0 || idx === COLORS_LENGTH - 1) {
+      return transparentize(1, color);
+    }
+    return color;
+  });
 
   const animateText = useCallback((): void => {
     const delay = delayMs ?? DELAY;
     const viewWidthRatio = viewWidth ? viewWidth / windowWidth : 1;
-    const distance1 = textWidth;
-    const distance2 = viewWidth + textWidth;
-    const velocity = 2500 / speed;
-    xOffset.value = withDelay(
-      delay,
-      withSequence(
-        withTiming(-textWidth - marginLeft, {
-          duration: distance1 * velocity * viewWidthRatio,
-          easing: Easing.linear,
-        }),
-        withRepeat(
+
+    switch (mode) {
+      case 'revolve': {
+        const distance1 = textWidth;
+        const distance2 = viewWidth + textWidth;
+        const velocity = 2500 / speed;
+        xOffset.value = withDelay(
+          delay,
           withSequence(
-            withTiming(viewWidth ?? 0, {
-              duration: 0,
+            withTiming(-textWidth - marginLeft, {
+              duration: distance1 * velocity * viewWidthRatio,
               easing: Easing.linear,
             }),
-            withTiming(-textWidth - marginLeft, {
-              duration: distance2 * velocity * viewWidthRatio,
+            withRepeat(
+              withSequence(
+                withTiming(viewWidth ?? 0, {
+                  duration: 0,
+                  easing: Easing.linear,
+                }),
+                withTiming(-textWidth - marginLeft, {
+                  duration: distance2 * velocity * viewWidthRatio,
+                  easing: Easing.linear,
+                })
+              ),
+              -1
+            )
+          )
+        );
+        break;
+      }
+      case 'peek':
+      default: {
+        const velocity = 2500 / speed;
+        const duration = (textWidth * velocity * viewWidthRatio) / 4;
+        xOffset.value = withDelay(
+          delay,
+          withSequence(
+            withTiming(viewWidth - textWidth - marginLeft * 2, {
+              duration,
               easing: Easing.linear,
-            })
-          ),
-          -1
-        )
-      )
-    );
-  }, [delayMs, marginLeft, speed, textWidth, viewWidth, xOffset]);
+            }),
+            withRepeat(
+              withSequence(
+                withDelay(
+                  delay / 4,
+                  withTiming(0, {
+                    duration,
+                    easing: Easing.linear,
+                  })
+                ),
+                withDelay(
+                  delay,
+                  withTiming(viewWidth - textWidth - marginLeft * 2, {
+                    duration,
+                    easing: Easing.linear,
+                  })
+                )
+              ),
+              -1
+            )
+          )
+        );
+      }
+    }
+  }, [delayMs, marginLeft, mode, speed, textWidth, viewWidth, xOffset]);
+
+  useEffect(() => {
+    const init = async (): Promise<void> => {
+      const size = await rnTextSize.measure({
+        allowFontScaling: true,
+        fontSize: 15,
+        text: children,
+      });
+      const isReduceMotion = await AccessibilityInfo.isReduceMotionEnabled();
+      setIsReduceMotionEnabled(isReduceMotion);
+      setTextWidth(size.width);
+      setTextHeight(size.height);
+    };
+    init();
+  }, [children]);
 
   useEffect(() => {
     if (widthsDefined && textOverflowing) {
@@ -126,7 +167,7 @@ export const RevolvingText: FC<IProps> = ({
     if (shouldReset) {
       cancelAnimation(xOffset);
       xOffset.value = 0;
-      if (widthsDefined && textOverflowing && textWidthChanged) {
+      if (widthsDefined && textOverflowing) {
         animateText();
       }
       setShouldReset(false);
@@ -138,7 +179,6 @@ export const RevolvingText: FC<IProps> = ({
     xOffset,
     widthsDefined,
     textOverflowing,
-    textWidthChanged,
   ]);
 
   const checkShouldReset = (
@@ -162,53 +202,46 @@ export const RevolvingText: FC<IProps> = ({
     setViewWidth(e.nativeEvent.layout.width);
   };
 
-  const onTextLayout = (e: NativeSyntheticEvent<TextLayoutEventData>): void => {
-    if (e.nativeEvent.lines.length) {
-      const lineWidth = e.nativeEvent.lines[0]?.width ?? 0;
-      const lineheight = e.nativeEvent.lines[0]?.height ?? 0;
-      setTextWidth(lineWidth);
-      setTextHeight(lineheight);
-    }
-  };
-
   const animStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: xOffset.value }],
   }));
 
   return (
     <View style={{ overflow: 'hidden' }} onLayout={onViewLayout}>
-      <MaskedView
-        maskElement={
-          <Reanimated.View
-            style={[animStyle, { width: textWidth, marginLeft }]}
-          >
-            <Text
-              numberOfLines={1}
-              style={[fontStyle]}
-              onTextLayout={onTextLayout}
+      {textOverflowing && !isReduceMotionEnabled ? (
+        <MaskedView
+          androidRenderingMode={'software'}
+          maskElement={
+            <Reanimated.View
+              style={[animStyle, { marginLeft, width: textWidth }]}
             >
-              {children}
-            </Text>
+              <Reanimated.Text style={[textStyle, { width: textWidth }]}>
+                {children}
+              </Reanimated.Text>
+            </Reanimated.View>
+          }
+        >
+          <Reanimated.View>
+            <LinearGradient
+              colors={colors}
+              end={END_POINT}
+              start={START_POINT}
+              style={{
+                height: textHeight,
+                width: viewWidth,
+              }}
+            >
+              <Text />
+            </LinearGradient>
           </Reanimated.View>
-        }
-      >
-        <Reanimated.View>
-          <LinearGradient
-            colors={colors}
-            end={END_POINT}
-            start={START_POINT}
-            style={{ height: textHeight, width: viewWidth }}
-          >
-            <Text style={styles.zeroOpacity} />
-          </LinearGradient>
-        </Reanimated.View>
-      </MaskedView>
+        </MaskedView>
+      ) : (
+        <Text style={[textStyle, { color: textColor, marginLeft }]}>
+          {children}
+        </Text>
+      )}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  zeroOpacity: {
-    opacity: 0,
-  },
-});
+export default RevolvingText;
