@@ -22,7 +22,7 @@ import Reanimated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import rnTextSize from 'react-native-text-dimensions';
+import TextDimensions from 'react-native-text-dimensions';
 import { Colors } from './constants/Colors';
 import { windowWidth } from './constants/Sizes';
 import LinearGradient from 'react-native-linear-gradient';
@@ -144,7 +144,7 @@ export const RevolvingText: FC<IProps> = ({
 
   useEffect(() => {
     const init = async (): Promise<void> => {
-      const size = await rnTextSize.measure({
+      const size = await TextDimensions.measure({
         allowFontScaling: true,
         fontSize: 15,
         text: children,
