@@ -78,6 +78,7 @@ export const RevolvingText: FC<IProps> = ({
     const viewWidthRatio = viewWidth ? viewWidth / windowWidth : 1;
 
     switch (mode) {
+      default:
       case 'revolve': {
         const distance1 = textWidth;
         const distance2 = viewWidth + textWidth;
@@ -106,8 +107,7 @@ export const RevolvingText: FC<IProps> = ({
         );
         break;
       }
-      case 'peek':
-      default: {
+      case 'peek': {
         const velocity = 2500 / speed;
         const duration = (textWidth * velocity * viewWidthRatio) / 4;
         xOffset.value = withDelay(
