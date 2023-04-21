@@ -12,6 +12,3 @@ includeBuild(new File(["node", "--print", "require.resolve('react-native-gradle-
 include ':react-native-linear-gradient'
 project(':react-native-linear-gradient').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-linear-gradient/android')
 
-include ':react-native-text-size'
-project(':react-native-text-size').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-text-size/android')
-
