@@ -6,9 +6,12 @@
 
 RevolvingText can be installed via NPM or Yarn:
 
-`npm install react-native-revolving-text @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient --save`
+`npm install react-native-revolving-text @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient react-native-text-dimensions --save`
 
-`yarn add react-native-revolving-text @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient`
+`yarn add react-native-revolving-text @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient react-native-text-dimensions`
+
+then run
+`npx pod-install`
 
 # **Usage**
 
@@ -23,10 +26,11 @@ const App = () => {
       <View style={styles.parentView}>
         <RevolvingText
           fontStyle={styles.text}
-          speed={80}
+          speed={50}
           delayMs={4000}
           marginLeft={10}
           textColor={"white"}
+          mode={"revolve"}
         >
           {
             "This text will continuously scroll to the left in a loop if the text is larger than its parent view"
@@ -68,5 +72,6 @@ const styles = StyleSheet.create({
 - `speed` (optional) - The speed of the animation. Arbitrary value. Defaults to 50.
 - `textColor` (optional) - The color of the text. Defaults to black.
 - `fontStyle` (optional) - An object containing any additional styles to be applied to the text component.
+- `mode` (optional) - A string representing the 2 modes the component has. "revolve" continuously revolves the text, while "peek" animates back and forth so you can see the whole text. Defaults to "revolve".
 
 ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmI3YmJlOTFhZTcyOTA5YWI5OTkwMWMxNTk4MGE1MjQ4NTdiNDdjMSZjdD1n/1ymHr0E5x93qYU17lR/giphy.gif)
