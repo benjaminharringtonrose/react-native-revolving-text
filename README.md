@@ -11,7 +11,7 @@ RevolvingText can be installed via NPM or Yarn:
 `yarn add react-native-revolving-text @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient react-native-text-dimensions`
 
 then run
-`cd ios && pod install && cd ..`
+`npx pod-install`
 
 # **Usage**
 
