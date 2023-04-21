@@ -476,7 +476,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNTextSize (4.0.0-rc.1):
+  - RNTextDimensions (1.0.5):
     - React
   - Yoga (1.14.0)
 
@@ -534,7 +534,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
   - RNReanimated (from `../node_modules/react-native-reanimated`)
-  - RNTextSize (from `../node_modules/react-native-text-size/ios`)
+  - RNTextDimensions (from `../node_modules/react-native-text-dimensions`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -645,8 +645,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-masked-view/masked-view"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
-  RNTextSize:
-    :path: "../node_modules/react-native-text-size/ios"
+  RNTextDimensions:
+    :path: "../node_modules/react-native-text-dimensions"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -704,9 +704,9 @@ SPEC CHECKSUMS:
   ReactCommon: 0c43eaeaaee231d7d8dc24fc5a6e4cf2b75bf196
   RNCMaskedView: 949696f25ec596bfc697fc88e6f95cf0c79669b6
   RNReanimated: cc5e3aa479cb9170bcccf8204291a6950a3be128
-  RNTextSize: 7efa06531c6bb7ab6ed070b4ce0d1248cf06fcdf
+  RNTextDimensions: 6d1a62b451cd88b0bf97314a04b8feb293e9fd93
   Yoga: ba09b6b11e6139e3df8229238aa794205ca6a02a
 
-PODFILE CHECKSUM: 2758d9a528512143649477ca703e303eece83ae0
+PODFILE CHECKSUM: 675d5c47e1336b7b792d33fad9d8fbf19b97d359
 
 COCOAPODS: 1.11.3

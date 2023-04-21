@@ -8200,10 +8200,10 @@ react-native-reanimated@~2.14.4:
     setimmediate "^1.0.5"
     string-hash-64 "^1.0.3"
 
-react-native-text-size@^4.0.0-rc.1:
-  version "4.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/react-native-text-size/-/react-native-text-size-4.0.0-rc.1.tgz#1e048d345dd6a5a8e1269e0585c1a5948c478da5"
-  integrity sha512-CysqjU2jK6Yc+a+kEI222pUyTY2ywcU2HqbFqf1KHymW6OPTdvBBHqbEJKL0QiLhQaFYDbqicM+h990s9TP00g==
+react-native-text-dimensions@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-text-dimensions/-/react-native-text-dimensions-1.0.5.tgz#973f56277c3deb4d5d331b9d7f7a520769233ce5"
+  integrity sha512-DXC13KHPbSZ64h8rWqHK8MqyMB1jNgDv1W73jT6ddAUOyjB6mwRlPHg5bu05yg038AZ7TnLss7bp6yG4fqxjJQ==
 
 react-native@0.71.6:
   version "0.71.6"

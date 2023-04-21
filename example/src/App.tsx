@@ -20,6 +20,7 @@ export default function App() {
           delayMs={4000}
           textColor={Colors.white}
           marginLeft={10}
+          mode={'revolve'}
         >
           {
             "If the text is larger than it's parent view, it'll begin revolving after the delay at the speed you set it to. Enjoy the component!"
