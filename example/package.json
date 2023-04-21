@@ -19,7 +19,7 @@
     "react-native": "0.71.6",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-reanimated": "~2.14.4",
-    "react-native-text-dimensions": "^1.0.5",
+    "react-native-text-dimensions": "^2.0.0",
     "react-native-web": "~0.18.10"
   },
   "devDependencies": {
