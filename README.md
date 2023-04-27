@@ -10,8 +10,24 @@ RevolvingText can be installed via NPM or Yarn:
 
 `yarn add react-native-revolving-text @react-native-masked-view/masked-view react-native-reanimated react-native-linear-gradient react-native-text-dimensions`
 
+add "react-native-reanimated/plugin" to your `babel.config.js` file like this:
+
+```ts
+module.exports = {
+    presets: [
+      ...
+    ],
+    plugins: [
+      ...
+      'react-native-reanimated/plugin',
+    ],
+  };
+```
+
 then run
 `npx pod-install`
+
+when you start the metro, make sure you reset the cache
 
 # **Usage**
 
