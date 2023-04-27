@@ -23,6 +23,7 @@ module.exports = {
     ],
   };
 ```
+(the reanimated plugin must be the last one in the list)
 
 then run
 `npx pod-install`
