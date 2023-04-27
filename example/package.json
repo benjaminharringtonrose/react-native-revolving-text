@@ -6,7 +6,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "pods": "cd ios && pod install --repo-update && cd .."
+    "pods": "cd ios && pod install --repo-update && cd ..",
+    "clean:android": "rm -rf $TMPDIR/react-* && watchman watch-del-all && cd android && ./gradlew clean"
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.2.9",
@@ -19,7 +20,7 @@
     "react-native": "0.71.6",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-reanimated": "~2.14.4",
-    "react-native-text-dimensions": "^2.0.0",
+    "react-native-text-dimensions": "^2.0.2",
     "react-native-web": "~0.18.10"
   },
   "devDependencies": {

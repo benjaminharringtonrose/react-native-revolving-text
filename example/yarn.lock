@@ -8670,10 +8670,10 @@ react-native-reanimated@~2.14.4:
     setimmediate "^1.0.5"
     string-hash-64 "^1.0.3"
 
-react-native-text-dimensions@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-text-dimensions/-/react-native-text-dimensions-2.0.0.tgz#0fa9625778d065e8d96794549d54825da5c1af24"
-  integrity sha512-We/2j0achxZMhmFiPBlThzdBCn7h83iI/8VveQ8U5UnhU6B/ws118wvo/8V1oKsPt7pud3MZPRSoXKs5M3JOkg==
+react-native-text-dimensions@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-text-dimensions/-/react-native-text-dimensions-2.0.2.tgz#fd68adcdb2c3b32b202b2bbc8317a52e8db324be"
+  integrity sha512-Z1diJ+OFL6Mg4poB2bRuXiJqCZI7kVuZyoRaFBPecRwv14aud/iXvunjHPA5Xjc4ezXydwCjxhm/Oh3SWDX05Q==
 
 react-native-web@~0.18.10:
   version "0.18.12"

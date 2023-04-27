@@ -476,7 +476,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNTextDimensions (2.0.0):
+  - RNTextDimensions (2.0.2):
     - React
   - Yoga (1.14.0)
 
@@ -704,7 +704,7 @@ SPEC CHECKSUMS:
   ReactCommon: 0c43eaeaaee231d7d8dc24fc5a6e4cf2b75bf196
   RNCMaskedView: 949696f25ec596bfc697fc88e6f95cf0c79669b6
   RNReanimated: cc5e3aa479cb9170bcccf8204291a6950a3be128
-  RNTextDimensions: 6c067c26c07ff08646b282318757c796f676261f
+  RNTextDimensions: 729d4e35ba2beab4e0ed684341ed832f3161c023
   Yoga: ba09b6b11e6139e3df8229238aa794205ca6a02a
 
 PODFILE CHECKSUM: 675d5c47e1336b7b792d33fad9d8fbf19b97d359
